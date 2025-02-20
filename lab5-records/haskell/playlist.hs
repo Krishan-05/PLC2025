@@ -27,9 +27,9 @@ data Item
 
 instance Show Item where
     show (Piece name performer len) =
-        printf "%s by %s (%.1fs)" name (show performer) len
+        printf "%s by %s (%.1f s)" name (show performer) len
     show (Pause len) =
-        printf "Pause (%.1fs)" len
+        printf "Pause (%.1f s)" len
 
 piece1 :: Item
 piece1 =
@@ -71,4 +71,4 @@ main = do
     putStr "piece1 = "
     putStrLn $ show piece1
     putStr "pause1 = "
-    putStrLn $ show pause1  -- Printing pause1
+    putStrLn $ show pause1
