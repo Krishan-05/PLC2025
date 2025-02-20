@@ -19,11 +19,17 @@ data Item
             item_performer :: Person,
             item_length_secs :: Float
         }
+    | Pause
+        {
+            item_length_secs :: Float
+        }
     deriving (Eq)
 
 instance Show Item where
     show (Piece name performer len) =
         printf "%s by %s (%.1fs)" name (show performer) len
+    show (Pause len) =
+        printf "Pause (%.1fs)" len
 
 piece1 :: Item
 piece1 =
@@ -43,6 +49,13 @@ piece2 =
         item_length_secs = 16*60+49
     }
 
+pause1 :: Item
+pause1 =
+    Pause
+    { 
+        item_length_secs = 5
+    }
+
 sortTwoItems :: (Item, Item) -> (Item, Item)
 sortTwoItems (item1, item2) = 
     if item_length_secs item1 <= item_length_secs item2
@@ -57,3 +70,5 @@ main = do
     putStrLn $ show longerPiece
     putStr "piece1 = "
     putStrLn $ show piece1
+    putStr "pause1 = "
+    putStrLn $ show pause1  -- Printing pause1
